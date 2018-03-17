@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from openpyxl import Workbook
-from random import randint
+from random import randrange
 
 
 LINK = "https://www.coursera.org/sitemap~www~courses.xml"
@@ -50,12 +50,12 @@ def get_course_info(course_url):
     )
 
 
-def output_courses_info_to_xlsx(data):
+def output_courses_info_to_xlsx(data_course):
     xlsx_book = Workbook()
     xlsx_book_filename = "coursera_courses_info.xlsx"
     xlsx_book_sheet = xlsx_book.active
     xlsx_book_sheet.append(["Name", "Language", "Start date","Rating", "URL"])
-    for row in data:
+    for row in data_course:
         xlsx_book_sheet.append(row)
     xlsx_book.save(filename=xlsx_book_filename)
 
@@ -64,8 +64,8 @@ if __name__ == "__main__":
     count_courses_to_xlsx = 20
     course_url_list = get_courses_list()
     data_to_xlsx_export = []
-    for i in range(count_courses_to_xlsx):
-        random_number = randint(0, len(course_url_list))
+    for number in range(count_courses_to_xlsx):
+        random_number = randrange(len(course_url_list))
         data_to_xlsx_export.append(
             get_course_info(course_url_list[random_number])
         )
