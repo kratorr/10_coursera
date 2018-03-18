@@ -35,11 +35,11 @@ def get_course_info(html_page_text, course_url):
     else:
         course_rating = None
     return {
-        "course_url":course_url,
-        "course_name":course_name ,
-        "course_language":course_language,
-        "course_start_date":course_start_date,
-        "course_rating":course_rating,
+        "course_url": course_url,
+        "course_name": course_name,
+        "course_language": course_language,
+        "course_start_date": course_start_date,
+        "course_rating": course_rating,
         "course_duration": course_duration
     }
 
@@ -48,17 +48,17 @@ def output_courses_info_to_xlsx(courses_info_list):
     xlsx_book = Workbook()
     xlsx_book_sheet = xlsx_book.active
     xlsx_book_sheet.append(
-        ["Name", "Language", "Start date","Rating","Course duration", "URL"]
+        ["Name", "Language", "Start date", "Rating", "Course duration", "URL"]
     )
-    for list_info in courses_info_list:
+    for course_info in courses_info_list:
         xlsx_book_sheet.append(
             (
-                list_info["course_name"],
-                list_info["course_language"],
-                list_info["course_start_date"],
-                list_info["course_rating"],
-                list_info["course_duration"],
-                list_info["course_url"]
+                course_info["course_name"],
+                course_info["course_language"],
+                course_info["course_start_date"],
+                course_info["course_rating"],
+                course_info["course_duration"],
+                course_info["course_url"]
             )
         )
     return xlsx_book
